@@ -1,3 +1,4 @@
+
 def get_codon_table():
     d = {}
     d['CAU'] = 'H'; d['CAC'] = 'H'; d['CAA'] = 'Q'; d['CAG'] = 'Q'; d['CCU'] = 'P'; d['CCC'] = 'P'; d['CCA'] = 'P'; d['CCG'] = 'P';
@@ -118,7 +119,32 @@ def Task4():
 
 
 
+def peptideMass(str):
+    dict = {}
+    dict['A'] = 71; dict['I'] = 113; dict['N'] = 114; dict['D'] = 115; dict['C'] = 103; dict['Q'] = 128
+    dict['E'] = 129; dict['G'] = 57; dict['H'] = 137; dict['L'] = 113; dict['K'] = 128; dict['M'] = 131
+    dict['F'] = 147; dict['P'] = 97; dict['S'] = 87; dict['T'] = 101; dict['W'] = 186; dict['Y'] = 163
+    dict['V'] = 99; dict['R'] = 156
+    sum = 0
+    for k in range(len(str)):
+        sum += dict.get(str[k:k+1])
+    return sum
 
+
+def Task5():
+    N = {}
+    N[0] = 1
+    mass = 1024
+    m = [57, 71, 87, 97, 99, 101, 103, 113, 114, 115, 128, 129, 131, 137, 147, 156, 163, 186]
+    for i in range(57, mass + 1):
+        N[i] = 0
+        for j in range(0,len(m)):
+            if(i - m[j]) in N:
+                N[i] = N[i - m[j]] + N[i]
+    print(N[mass])
+
+#Task1()
 #Task3()
 #Task2()
-Task4()
+#Task4()
+Task5()
